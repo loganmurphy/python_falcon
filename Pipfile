@@ -1,0 +1,25 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+falcon = "*"
+gunicorn = "*"
+requests = "*"
+ipython = "*"
+httpie = "*"
+msgpack-python = "*"
+pytest = "*"
+
+
+[dev-packages]
+
+
+
+[requires]
+
+python_version = "2.7"
