@@ -1,0 +1,3 @@
+{
+  "tests/test_app.py::test_posted_image_gets_saved": true
+}
