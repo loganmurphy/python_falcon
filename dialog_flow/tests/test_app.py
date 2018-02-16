@@ -53,3 +53,18 @@ def test_post_image(client, mock_store):
 
     assert isinstance(saver_call[0][0], falcon.request_helpers.BoundedStream)
     assert saver_call[0][1] == image_content_type
+
+    def test_saving_image(monkeypatch):
+        mock_file_open = mock_open()
+
+        fake_uuid = '12ksdfas-qdfas-wqer123'
+        fake_request_stream = io.BytesIO(fake_image_bytes)
+        storage_path = 'fake-storage-path'
+        store = look.images.ImageStore(
+            storage_path,
+            uuidgen=mock_uuidgen,
+            fopen=mock_file_open
+        )
+
+        assert store.save(fake_request_stream, 'image/png') == fake_uuid + '.png'
+        assert call().write(fake_image_bytes) in mock_file_open.mock_calls
